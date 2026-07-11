@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Jacob Coleman",
-  title: "Founder & CEO, Coleman SiteWorks | Student Entrepreneur",
+  title: "Founder & CEO, Coleman SiteWorks LLC | Student Entrepreneur",
   description: "Portfolio website of Jacob Coleman — entrepreneur, web developer, and student at Deerfield High School.",
   accentColor: "#F0A500",
   social: {
