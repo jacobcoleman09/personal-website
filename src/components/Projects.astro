@@ -1,6 +1,19 @@
 ---
 import { siteConfig } from "../config";
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
+
+// Each project card gets a unique accent color
+const cardAccents = ["#F0A500", "#7C3AED", "#0D9488", "#2563EB", "#E11D48", "#F97316"];
+
+// Tag color sets that pair nicely with each card accent
+const tagColors = [
+  { bg: "#FEF3C7", text: "#92400E" },  // amber
+  { bg: "#EDE9FE", text: "#5B21B6" },  // purple
+  { bg: "#CCFBF1", text: "#134E4A" },  // teal
+  { bg: "#DBEAFE", text: "#1E3A8A" },  // blue
+  { bg: "#FFE4E6", text: "#9F1239" },  // rose
+  { bg: "#FED7AA", text: "#7C2D12" },  // orange
+];
 ---
 
 {
@@ -9,41 +22,46 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
       <div>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           <div class="lg:col-span-4">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+            <h2
+              class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold"
+              style={`color: ${siteConfig.accentColor}`}
+            >
               Projects
             </h2>
             <div
               class="w-[75px] h-[5px] mt-2 rounded-full"
-              style={`background-color: ${siteConfig.accentColor}`}
+              style={`background: linear-gradient(90deg, ${siteConfig.accentColor}, #0D9488)`}
             />
           </div>
 
           <div class="lg:col-span-8">
             <div class="space-y-8">
               {siteConfig.projects.map((project, index) => {
+                const accent = cardAccents[index % cardAccents.length];
+                const tag = tagColors[index % tagColors.length];
                 const Component = project.link ? "a" : "div";
                 const linkProps = project.link
-                  ? {
-                      href: project.link,
-                      target: "_blank",
-                      rel: "noopener noreferrer",
-                    }
+                  ? { href: project.link, target: "_blank", rel: "noopener noreferrer" }
                   : {};
 
                 return (
                   <div class="group relative">
                     <Component
                       {...linkProps}
-                      class={`block relative p-4 sm:p-6 md:p-8 bg-gray-50 rounded-xl sm:rounded-2xl border border-gray-200 transition-all duration-300 ${
+                      class={`block relative p-4 sm:p-6 md:p-8 bg-white rounded-xl sm:rounded-2xl border-l-4 border border-gray-100 shadow-sm transition-all duration-300 ${
                         project.link
-                          ? "hover:bg-white hover:shadow-xl hover:border-gray-300 hover:-translate-y-1"
-                          : ""
+                          ? "hover:shadow-xl hover:-translate-y-1"
+                          : "hover:shadow-md"
                       }`}
+                      style={`border-left-color: ${accent}`}
                     >
                       {project.link && (
-                        <div class="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center bg-gray-900 rounded-full text-white transition-all duration-300 group-hover:bg-gray-700">
+                        <div
+                          class="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center rounded-full text-white transition-all duration-300"
+                          style={`background-color: ${accent}`}
+                        >
                           <svg
-                            class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                            class="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -61,8 +79,8 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
                       <div class="space-y-4">
                         <div>
                           <span
-                            class="text-sm font-mono"
-                            style={{ color: siteConfig.accentColor }}
+                            class="text-sm font-mono font-bold"
+                            style={`color: ${accent}`}
                           >
                             0{index + 1}
                           </span>
@@ -81,9 +99,8 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
                           <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-2">
                             {project.skills.map((skill) => (
                               <span
-                                class={`px-2.5 sm:px-3 py-1 sm:py-1.5 bg-gray-900 text-white rounded-md sm:rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 ${
-                                  project.link ? "group-hover:bg-gray-800" : ""
-                                }`}
+                                class="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-md sm:rounded-lg text-xs sm:text-sm font-semibold"
+                                style={`background-color: ${tag.bg}; color: ${tag.text}`}
                               >
                                 {skill}
                               </span>

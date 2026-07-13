@@ -47,6 +47,20 @@ export const siteConfig = {
       link: "",
       skills: ["Market Research", "Strategic Marketing", "Business Analysis", "Presentation"],
     },
+    {
+      name: "Entrepreneur of Impact — Colossal Management / DTCare",
+      description:
+        "Selected nationally to compete in a public-vote business competition benefiting GENYOUth. Represented entrepreneurial impact on a national stage, showcasing Coleman SiteWorks and my community-driven work.",
+      link: "",
+      skills: ["Entrepreneurship", "Public Speaking", "Business Competition", "National Stage"],
+    },
+    {
+      name: "Youth Economy Lab",
+      description:
+        "Member of a student-led community focused on economics, research, and social impact. Contributed published work distributed internationally across the Lab's global network.",
+      link: "",
+      skills: ["Economics Research", "Writing", "Social Impact", "International Publishing"],
+    },
   ],
   experience: [
     {
